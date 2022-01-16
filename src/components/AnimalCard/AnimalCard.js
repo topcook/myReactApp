@@ -1,13 +1,15 @@
 import React from "react";
 import './AnimalCard.css';
 import PropTypes from 'prop-types';
+import AnimalDetails from "../AnimalDetails/AnimalDetails";
 
 export default function AnimalCard(props) {
+
     return(
         <div className="animal-wrapper">
             <h3>{props.name}</h3>
             <div>{props.size}kg</div>
-            <div>{props.diet.join(', ')}</div>
+            <AnimalDetails diet = {props.diet} />
         </div>
     )
 }
