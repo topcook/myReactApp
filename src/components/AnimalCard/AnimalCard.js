@@ -3,13 +3,13 @@ import './AnimalCard.css';
 import PropTypes from 'prop-types';
 import AnimalDetails from "../AnimalDetails/AnimalDetails";
 
-export default function AnimalCard(props) {
+export default function AnimalCard({name, size, ...props}) {
 
     return(
         <div className="animal-wrapper">
-            <h3>{props.name}</h3>
-            <div>{props.size}kg</div>
-            <AnimalDetails diet = {props.diet} />
+            <h3>{name}</h3>
+            <div>{size}kg</div>
+            <AnimalDetails {...props} />
         </div>
     )
 }
