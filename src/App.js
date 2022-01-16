@@ -5,6 +5,8 @@ function App() {
 
   const displayEmojiName = event => alert(event.target.id);
 
+  const displayAction = false;
+
   const emojis = [
     {
       emoji:'😀',
@@ -23,7 +25,7 @@ function App() {
   return (
     <div className='container'>
       <h1 id={greeting} >Hello World!</h1>
-      <p>I'm writing JSX</p>
+      { displayAction && <p>I'm writing JSX</p>}
       <ul>
         {
             emojis.map( emoji => (
