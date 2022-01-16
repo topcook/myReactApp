@@ -15,15 +15,17 @@ function convertFood(food) {
         }
 }
 
-export default function AnimalDetails({diet}) {
+export default function AnimalDetails({diet, scientificName}) {
     return (
         <div className='details'>
             <h4>Details</h4>
+            <div>ScientificName: { scientificName }</div>
             Diet: {diet.map(food => convertFood(food)).join(', ')}
         </div>
     )
 }
 
 AnimalDetails.propTypes = {
-    diet: PropTypes.arrayOf(PropTypes.string).isRequired
+    diet: PropTypes.arrayOf(PropTypes.string).isRequired,
+    scientificName: PropTypes.string.isRequired
 }
