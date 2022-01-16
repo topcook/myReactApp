@@ -1,4 +1,5 @@
 import './App.css';
+import Instructions from './Instructions';
 
 function App() {
   const greeting = 'greeting';
@@ -26,6 +27,7 @@ function App() {
     <div className='container'>
       <h1 id={greeting} >Hello World!</h1>
       { displayAction && <p>I'm writing JSX</p>}
+      <Instructions />
       <ul>
         {
             emojis.map( emoji => (
