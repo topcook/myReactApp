@@ -1,5 +1,5 @@
 import './App.css';
-import Instructions from './Instructions';
+import Instructions from '../Instructions/Instructions';
 
 function App() {
   const greeting = 'greeting';
