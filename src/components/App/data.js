@@ -9,19 +9,12 @@ export default [
         name: 'Gorilla',
         scientificName: 'Gorilla beringei',
         size: 205,
-        diet: ['plants', 'insects'],
-        additional: {
-            notes: 'This is the eastern gorilla. There is also a west that is a different species.'
-        }
+        diet: ['plants', 'insects']
     },
     {
         name: 'Zebra',
         scientificName: 'Equus quagga',
         size: 322,
-        diet: ['plants'],
-        additional: {
-            notes: 'There are three different species of zebra.',
-            link: 'https://en.wikipedia.org/wiki/Zebra'
-        }
+        diet: ['plants']
     }
 ]
