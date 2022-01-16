@@ -2,15 +2,16 @@ import React from "react";
 import './AnimalCard.css';
 import PropTypes from 'prop-types';
 import AnimalDetails from "../AnimalDetails/AnimalDetails";
+import Card from '../Card/Card';
 
 export default function AnimalCard({name, size, ...props}) {
 
     return(
-        <div className="animal-wrapper">
+        <Card title = "Animal">
             <h3>{name}</h3>
             <div>{size}kg</div>
             <AnimalDetails {...props} />
-        </div>
+        </Card>
     )
 }
 
