@@ -12,12 +12,10 @@ const useStyles = createUseStyles({
 
 function App() {
 
-  const wrapper =  {
-    padding:20
-  }
+  const classes = useStyles();
 
   return (
-    <div style = {wrapper}>
+    <div className={classes.wrapper}>
       <Alert 
       title = "Itmes Not Added"
       type = "error">
