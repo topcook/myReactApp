@@ -43,7 +43,7 @@ const cartReducer = (state, action) => {
 
 const totalReducer = (state, action) => {
     if (action.type === 'add') return state + action.price;
-    else return state.total - action.price;
+    else return state - action.price;
 }
 
 export default function Product() {
@@ -57,6 +57,11 @@ export default function Product() {
         setTotal({ price, type: 'add' });
     }
 
+    const remove = (product) => {
+        const { name, price } = product;
+        setCart({ name, type: 'remove' });
+        setTotal({ price, type: 'remove' });
+    }
 
     return (
         <div className="wrapper">
@@ -72,7 +77,7 @@ export default function Product() {
                             <span role="img" aria-label={product.name}>{product.emoji}</span>
                         </div>
                         <button onClick={() => add(product)}>Add</button>
-                        <button>Remove</button>
+                        <button onClick={() => remove(product)}>Remove</button>
                     </div>
                 ))}
             </div>
