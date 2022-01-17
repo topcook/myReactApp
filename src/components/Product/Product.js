@@ -41,15 +41,11 @@ export default class Product extends Component {
     }
 
     remove = (product) => {
-        this.setState(state => {
-            const cart = [...state.cart];
-            const index = cart.findIndex(item => item.name === product.name);
-            if (index < 0) return;
-            cart.splice(index, 1);
-            console.log("{cart}: ", {cart});
-            console.log("cart: ", cart);
-            return {cart}
-        })
+        const cart = [...this.state.cart];
+        const index = cart.findIndex(item => item.name === product.name);
+        if (index < 0) return;
+        cart.splice(index, 1);
+        this.setState({ cart })
     }
 
     render() {
