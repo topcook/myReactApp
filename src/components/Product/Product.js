@@ -2,16 +2,21 @@ import React, { useState } from 'react';
 import './Product.css';
 
 const currencyOptions = {
-    minimumFractionDigits:2,
-    maximumFractionDigits:2
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
 }
 
-const getTotal = (total) => (total.toLocaleString(undefined, this.currencyOptions));
+const getTotal = (total)=> (total.toLocaleString(undefined, currencyOptions));
 
 export default function Product() {
 
     const [cart, setCart] = useState([]);
     const [total, setTotal] = useState(0);
+
+    const add = () => {
+        setCart(['ice cream'])
+        setTotal(5);
+    }
 
     return (
         <div className="wrapper">
@@ -21,7 +26,11 @@ export default function Product() {
             <div>Total: {getTotal(total)}</div>
 
             <div className="product"><span role="img" aria-label="ice cream">🍦</span></div>
-            <button>Add</button> <button>Remove</button>
+            <button onClick={add}>Add</button>
+            <button onClick={()=>{
+                setCart([]);
+                setTotal(0);
+            }}>Remove</button>
         </div>
     )
 }
