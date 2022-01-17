@@ -22,37 +22,34 @@ const products = [
 export default class Product extends Component {
     state = {
         cart: [],
-        total: 0
     }
 
     currencyOptions = {
         minimumFractionDigits: 2,
-        maximumFractionDigits: 2
+        maximumFractionDigits: 2,
     }
 
-    getTotal = () => (this.state.total.toLocaleString(undefined, this.currencyOptions));
+    getTotal = () => {
+        const total = this.state.cart.reduce((totalCost, item) => totalCost + item.price, 0);
+        return total.toLocaleString(undefined, this.currencyOptions);
+    }
 
     add = (product) => {
         this.setState(state => ({
-            cart: [...state.cart, product.name],
-            total: state.total + product.price
+            cart: [...state.cart, product]
         }))
-
-        setTimeout(() => {
-            console.log(this.state.cart);
-        }, 100)
     }
 
     remove = (product) => {
         this.setState(state => {
             const cart = [...state.cart];
-            cart.splice(cart.indexOf(product));
-            const total = state.total - product.price;
-            return ({
-                cart,
-                total: state.total - product.price
-            });
-        });
+            const index = cart.findIndex(item => item.name === product.name);
+            if (index < 0) return;
+            cart.splice(index, 1);
+            console.log("{cart}: ", {cart});
+            console.log("cart: ", cart);
+            return {cart}
+        })
     }
 
     render() {
