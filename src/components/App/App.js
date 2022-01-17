@@ -2,6 +2,13 @@
 import '../Alert/Alert';
 import Alert from '../Alert/Alert';
 import CartSuccess from '../CartSuccess/CartSuccess';
+import { createUseStyles } from 'react-jss';
+
+const useStyles = createUseStyles({
+  wrapper:{
+    padding:20
+  }
+})
 
 function App() {
 
