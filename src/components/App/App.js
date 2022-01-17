@@ -1,6 +1,7 @@
 import './App.css';
 import '../Alert/Alert';
 import Alert from '../Alert/Alert';
+import CartSuccess from '../CartSuccess/CartSuccess';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       type = "error">
         <div>Your items are out of stock.</div>
       </Alert>
+      <CartSuccess />
     </div>
   );
 }
