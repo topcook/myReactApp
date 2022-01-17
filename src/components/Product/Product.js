@@ -1,6 +1,24 @@
 import React, { Component } from 'react';
 import './Product.css';
 
+const products = [
+    {
+        emoji: '🍦',
+        name: 'ice cream',
+        price: 5
+    },
+    {
+        emoji: '🍩',
+        name: 'donuts',
+        price: 2.5,
+    },
+    {
+        emoji: '🍉',
+        name: 'watermelon',
+        price: 4
+    }
+];
+
 export default class Product extends Component {
     state = {
         cart: [],
@@ -14,16 +32,20 @@ export default class Product extends Component {
 
     getTotal = () => (this.state.total.toLocaleString(undefined, this.currencyOptions));
 
-    add = () => {
-        this.setState({
-            cart: ['ice cream'],
-            total: 5
-        });
+    add = (product) => {
+        this.setState(state => ({
+            cart: [...state.cart, product.name],
+            total: state.total + product.price
+        }))
+
+        setTimeout(() => {
+            console.log(this.state.cart);
+        }, 100)
     }
 
-    remove = () =>{
+    remove = () => {
         this.setState({
-            cart:[]
+            cart: []
         });
     }
 
@@ -34,9 +56,17 @@ export default class Product extends Component {
                     Shopping Cart: {this.state.cart.length} total items.
                 </div>
                 <div>Total: {this.getTotal()}</div>
-
-                <div className="product"><span role="img" aria-label="ice cream">🍦</span></div>
-                <button onClick={this.add}>Add</button> <button onClick={this.remove}>Remove</button>
+                <div>
+                    {
+                        products.map(product => (
+                            <div>
+                                <div className="product">
+                                    <span role="img" aria-label={product.name}>{product.emoji}</span></div>
+                                <button onClick={() => this.add(product)}>Add</button> <button onClick={this.remove}>Remove</button>
+                            </div>
+                        ))
+                    }
+                </div>
             </div>
         )
     }
