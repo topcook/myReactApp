@@ -43,9 +43,15 @@ export default class Product extends Component {
         }, 100)
     }
 
-    remove = () => {
-        this.setState({
-            cart: []
+    remove = (product) => {
+        this.setState(state => {
+            const cart = [...state.cart];
+            cart.splice(cart.indexOf(product));
+            const total = state.total - product.price;
+            return ({
+                cart,
+                total: state.total - product.price
+            });
         });
     }
 
@@ -62,7 +68,8 @@ export default class Product extends Component {
                             <div>
                                 <div className="product">
                                     <span role="img" aria-label={product.name}>{product.emoji}</span></div>
-                                <button onClick={() => this.add(product)}>Add</button> <button onClick={this.remove}>Remove</button>
+                                <button onClick={() => this.add(product)}>Add</button>
+                                <button onClick={() => this.remove(product)}>Remove</button>
                             </div>
                         ))
                     }
