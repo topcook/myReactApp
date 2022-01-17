@@ -4,9 +4,7 @@ import Alert from '../Alert/Alert';
 import { createUseStyles } from 'react-jss';
 
 const useStyles = createUseStyles({
-    item: {
-        marginRight:20,
-    },
+    item: {},
 
     wrapper: {
         borderTop:'black solid 1px',
@@ -14,6 +12,9 @@ const useStyles = createUseStyles({
         flexWrap:'wrap',
         '& h2': {
             width:'100%'
+        },
+        '& $item': {
+            marginRight: 20
         }
     }
 });
