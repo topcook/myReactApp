@@ -1,4 +1,5 @@
 import React, { useReducer } from 'react';
+import { act } from 'react-dom/cjs/react-dom-test-utils.production.min';
 import './Product.css';
 
 const currencyOptions = {
@@ -26,9 +27,24 @@ const products = [
     }
 ];
 
-const cartReducer = (state, product) => ([...state, product]);
+const cartReducer = (state, action) => {
+    switch (action.type) {
+        case 'add':
+            return [...state, action.name];
+        case 'remove':
+            const update = [...state];
+            const index = update.splice(update.indexOf(action.name));
+            update.splice(index, 1);
+            return update;
+        default:
+            return state;
+    }
+}
 
-const totalReducer = (state, price) => (state + price);
+const totalReducer = (state, action) => {
+    if (action.type === 'add') return state + action.price;
+    else return state.total - action.price;
+}
 
 export default function Product() {
 
@@ -36,8 +52,9 @@ export default function Product() {
     const [total, setTotal] = useReducer(totalReducer, 0);
 
     const add = (product) => {
-        setCart(product.name);
-        setTotal(product.price);
+        const { name, price } = product;
+        setCart({ name, type: 'add' });
+        setTotal({ price, type: 'add' });
     }
 
 
