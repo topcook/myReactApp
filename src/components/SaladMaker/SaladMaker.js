@@ -1,6 +1,7 @@
 import React from "react";
 import { createUseStyles } from 'react-jss';
 import SaladBuilder from "../SaladBuilder/SaladBuilder";
+import SaladSummary from "../SaladSummary/SaladSummary";
 
 const useStyles = createUseStyles({
     wrapper: {
@@ -17,6 +18,7 @@ export default function SaladMaker() {
             Build Your Custom Salad!
             <sapn role = "img" aria-label = "salad">🥗</sapn>
             <SaladBuilder />
+            <SaladSummary />
         </h1>
     );
 }
