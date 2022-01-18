@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { TextContext } from '../App/App';
+import { memo } from 'react/cjs/react.development';
 
 function itemize(text) {
     const letters = text.split('')
@@ -19,7 +20,7 @@ function itemize(text) {
         .sort((a, b) => b[1] - a[1]);
 }
 
-export default function CharacterMap({ show }) {
+function CharacterMap({ show }) {
     const text = useContext(TextContext);
     if (!show) {
         return null;
@@ -38,3 +39,5 @@ export default function CharacterMap({ show }) {
 CharacterMap.proTypes = {
     show: PropTypes.bool.isRequired
 }
+
+export default memo(CharacterMap);
