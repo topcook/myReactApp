@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from 'prop-types';
 import { createUseStyles } from 'react-jss';
+import UserContext from "../User/User";
 
 const useStyles = createUseStyles({
     add: {
@@ -11,7 +12,7 @@ const useStyles = createUseStyles({
     favorite: {
         fontSize: 20,
         position: "absolute",
-        top:10,
+        top: 10,
         right: 10
     },
     image: {
@@ -20,7 +21,7 @@ const useStyles = createUseStyles({
     wrapper: {
         border: 'lightgrey solid 1px',
         margin: 20,
-        padding:25,
+        padding: 25,
         position: "relative",
         textAlign: 'center',
         textTransform: 'capitalize',
@@ -28,21 +29,23 @@ const useStyles = createUseStyles({
     }
 });
 
-export default function SaladItem({image, name}) {
+export default function SaladItem({ image, name }) {
     const classes = useStyles();
 
-    const favorite = true;
+    const user = useContext(UserContext);
 
-    return(
+    const favorite = user.favorites.includes(name);
+
+    return (
         <div className={classes.wrapper}>
             <h3>
                 {name}
             </h3>
-            <span className={classes.favorite} aria-label = {favorite? 'Favorite': 'Not Favorite'}>
-                {favorite? '😋':''}
+            <span className={classes.favorite} aria-label={favorite ? 'Favorite' : 'Not Favorite'}>
+                {favorite ? '😋' : ''}
             </span>
             <button className={classes.add}>
-                <span className={classes.image} role = "img" aria-label = {name}>
+                <span className={classes.image} role="img" aria-label={name}>
                     {image}
                 </span>
             </button>
