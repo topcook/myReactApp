@@ -78,7 +78,12 @@ function App() {
           </label>
           <label>
             <p>Gift Wrap</p>
-            <input type="checkbox" name="gift-wrap" onChange={handleChange} checked={formData['gift-wrap'] || false} />
+            <input type="checkbox"
+              checked={formData['gift-wrap'] || false}
+              disabled={formData.apple !== 'fuji'}
+              name="gift-wrap"
+              onChange={handleChange}
+            />
           </label>
         </fieldset>
         <button type="submit">Submit</button>
