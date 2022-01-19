@@ -7,19 +7,16 @@ export default function RiverInformation({ name }) {
     const [riverinformation, setRiverInformation] = useState({});
 
     useEffect(() => {
-        // console.log("before true");
         let mounted = true;
         getRiverInformation(name).
             then((riverData) => {
                 if (mounted) {
                     setRiverInformation(riverData);
-                    // console.log("mounted: true: ", mounted);
                 }
             });
-        // console.log("after true");
         return () => {
+            //it is executed when unmounting.
             mounted = false;
-            // console.log("mounted: false: ", mounted);
         }
     }, [name])
 
