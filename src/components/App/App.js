@@ -4,16 +4,34 @@ import { getList, setItem } from '../../services/list';
 
 function App() {
   const [list, setList] = useState([]);
+  const [alert, setAlert] = useState(false);
 
   const [itemInput, setIteminput] = useState('');
 
-  const handleSubmit = (e) =>{
+  let mounted = true;
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setItem(itemInput);
+    setItem(itemInput)
+      .then(() => {
+        if (mounted) {
+          setIteminput('');
+          setAlert(true);
+        }
+      })
   }
 
   useEffect(() => {
-    let mounted = true;
+    if (alert) {
+      setTimeout(() => {
+        if (mounted)
+          setAlert(false);
+      }, 2000)
+    }
+  }, [alert]);
+
+  useEffect(() => {
+    if (list.length && !alert) return;
     getList()
       .then(items => {
         if (mounted) {
@@ -21,7 +39,7 @@ function App() {
         }
       })
     return () => mounted = false;
-  }, [])
+  }, [alert, list])
 
   return (
     <div className="wrapper">
@@ -33,13 +51,14 @@ function App() {
       <form onSubmit={handleSubmit}>
         <label>
           <p>New Item</p>
-          <input type="text" 
-          onChange={(e) =>setIteminput(e.target.value)}
-          value={itemInput}
+          <input type="text"
+            onChange={(e) => setIteminput(e.target.value)}
+            value={itemInput}
           />
         </label>
         <button type='submit'>Submit</button>
       </form>
+      {alert && <h1>Submission successful!</h1>}
     </div>
   )
 }
