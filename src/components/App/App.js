@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './App.css';
 import { getList, setItem } from '../../services/list';
 
@@ -8,13 +8,13 @@ function App() {
 
   const [itemInput, setIteminput] = useState('');
 
-  let mounted = true;
+  const mounted = useRef(true);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setItem(itemInput)
       .then(() => {
-        if (mounted) {
+        if (mounted.current) {
           setIteminput('');
           setAlert(true);
         }
@@ -24,21 +24,22 @@ function App() {
   useEffect(() => {
     if (alert) {
       setTimeout(() => {
-        if (mounted)
+        if (mounted.current)
           setAlert(false);
       }, 2000)
     }
   }, [alert]);
 
   useEffect(() => {
+    mounted.current = true;
     if (list.length && !alert) return;
     getList()
       .then(items => {
-        if (mounted) {
+        if (mounted.current) {
           setList(items)
         }
       })
-    return () => mounted = false;
+    return () => mounted.current = false;
   }, [alert, list])
 
   return (
