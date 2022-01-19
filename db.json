@@ -14,4 +14,3 @@
     }
   ]
 }
-//curl -d "item=rice&param2=value2" -H 'Content-Type: application/json' -X POST http://localhost:3333/list
