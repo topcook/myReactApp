@@ -30,7 +30,7 @@ function App() {
     setSubmitting(true);
     setTimeout(() => {
       setSubmitting(false);
-      setFormData({reset:true});
+      setFormData({ reset: true });
     }, 3000);
   }
 
@@ -55,14 +55,14 @@ function App() {
             }
           </ul>
         </div>}
-      <form onSubmit={handleSubmit}>
+      <form disabled={submitting} onSubmit={handleSubmit}>
         <fieldset>
           <label>
             <p>Name</p>
             <input name="name" onChange={handleChange} value={formData.name || ''} />
           </label>
         </fieldset>
-        <fieldset>
+        <fieldset disabled={submitting}>
           <label>
             <p>Apples</p>
             <select name="apple" onChange={handleChange} value={formData.apple || ''}>
@@ -86,7 +86,7 @@ function App() {
             />
           </label>
         </fieldset>
-        <button type="submit">Submit</button>
+        <button disabled={submitting} type="submit">Submit</button>
       </form>
     </div >
   );
