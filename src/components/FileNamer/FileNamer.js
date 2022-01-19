@@ -23,7 +23,11 @@ export default function FileNamer() {
             <form>
                 <label>
                     <p>Name: </p>
-                    <input autoComplete="off" name="name" onChange={event => setName(event.target.value)} />
+                    <input autoComplete="off" name="name" 
+                    onChange={event => setName(event.target.value)} 
+                    onFocus={()=>setAlert(true)}
+                    onBlur={()=>setAlert(false)}
+                    />
                 </label>
                 {alert &&
                     <div>
