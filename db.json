@@ -1,12 +1,17 @@
 {
-    "list": [
-        {
-            "id": 1,
-            "item": "bread"
-        },
-        {
-            "id": 2,
-            "item": "grapes"
-        }
-    ]
+  "list": [
+    {
+      "id": 1,
+      "item": "bread"
+    },
+    {
+      "id": 2,
+      "item": "grapes"
+    },
+    {
+      "item": "rice",
+      "id": 3
+    }
+  ]
 }
+//curl -d "item=rice&param2=value2" -H 'Content-Type: application/json' -X POST http://localhost:3333/list
