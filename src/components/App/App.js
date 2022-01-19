@@ -2,7 +2,7 @@ import React, { useReducer, useState } from 'react';
 import './App.css';
 
 const formReducer = (state, event) =>({...state, 
-  [event.target.name]:event.target.value
+  [event.name]:event.value
 })
 
 function App() {
@@ -17,6 +17,13 @@ function App() {
     setTimeout(() =>setSubmitting(false), 3000);
   }
 
+  const handleChange = event =>{
+    setFormData({
+      name: event.target.name,
+      value: event.target.value
+    })
+  }
+
   return (
     <div className="wrapper">
       <h1>How About Them Apples</h1>
@@ -25,7 +32,7 @@ function App() {
         <fieldset>
           <label>
             <p>Name</p>
-            <input name="name" onChange={setFormData}/>
+            <input name="name" onChange={handleChange}/>
           </label>
         </fieldset>
         <button type="submit">Submit</button>
