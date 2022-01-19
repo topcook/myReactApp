@@ -1,8 +1,9 @@
 import './App.css';
+import FileNamer from '../FileNamer/FileNamer';
 
 function App() {
   return (
-    <></>
+    <FileNamer />
   );
 }
 
