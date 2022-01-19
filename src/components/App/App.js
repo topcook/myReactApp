@@ -9,6 +9,17 @@ function App() {
   return (
     <div class="wrapper">
       <h1>Bird List</h1>
+      <form>
+        <label>
+          <p>
+            Add Bird
+          </p>
+          <input type="text" />
+        </label>
+        <div>
+          <button type="submit">Add</button>
+        </div>
+      </form>
       <ul>
         {
           bidrs.map((bird) => (
