@@ -1,9 +1,15 @@
-import React, { useState } from 'react';
+import React, { useReducer, useState } from 'react';
 import './App.css';
+
+const formReducer = (state, event) =>({...state, 
+  [event.target.name]:event.target.value
+})
 
 function App() {
 
   const [submitting, setSubmitting] = useState(false);
+  const [formData, setFormData] = useReducer(formReducer, {})
+
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -19,7 +25,7 @@ function App() {
         <fieldset>
           <label>
             <p>Name</p>
-            <input name="name" />
+            <input name="name" onChange={setFormData}/>
           </label>
         </fieldset>
         <button type="submit">Submit</button>
