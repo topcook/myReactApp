@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './Login.css';
 
-export default function Login() {
+export default function Login({ setToken }) {
     return (
         <div className='login=wrapper'>
             <h1>Please Login.</h1>
@@ -20,4 +21,8 @@ export default function Login() {
             </form>
         </div>
     );
+}
+
+Login.propoTyps = {
+    setToken: PropTypes.func.isRequired
 }
