@@ -15,6 +15,8 @@ function App() {
             <li><Link to='/manatee'>Manatee</Link></li>
             <li><Link to='/narwhal'>Narwhal</Link></li>
             <li><Link to='/whale'>Whale</Link></li>
+            <li><Link to="/whale?type=beluga">Beluga Whale</Link></li>
+            <li><Link to="/whale?type=blue">Blue Whale</Link></li>
           </ul>
         </nav>
         <Routes>
