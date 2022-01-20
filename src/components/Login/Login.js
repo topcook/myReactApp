@@ -10,7 +10,7 @@ async function loginUser(credentials) {
         },
         body: JSON.stringify(credentials)
     })
-    .then(data=>data.json())
+        .then(data => data.json())
 }
 
 export default function Login({ setToken }) {
@@ -18,10 +18,20 @@ export default function Login({ setToken }) {
     const [username, setUserName] = useState('');
     const [password, setPassword] = useState('');
 
+    const handleSubmit = async e => {
+        e.preventDefault();
+        const token = await loginUser({
+            name: username,
+            password: password
+        });
+        console.log(token);
+        setToken(token);
+    };
+
     return (
         <div className='login=wrapper'>
             <h1>Please Login.</h1>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <label>
                     <p>Username</p>
                     <input type='text' onChange={e => setUserName(e.target.value)} />
