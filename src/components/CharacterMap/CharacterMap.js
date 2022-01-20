@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useMemo } from "react";
 import PropTypes from 'prop-types';
 
 function itemize(text) {
@@ -16,6 +16,7 @@ function itemize(text) {
 }
 
 function CharacterMap({ showExplanation, text }) {
+    const characters = useMemo(() =>itemize(text), [text]);
     return (
         <div>
             {showExplanation &&
@@ -26,7 +27,7 @@ function CharacterMap({ showExplanation, text }) {
             CharacterMap:
             <ul>
                 {
-                    itemize(text).map(character => (<li key={character[0]}>{character[0]}:{character[1]}</li>))
+                    characters.map(character => (<li key={character[0]}>{character[0]}:{character[1]}</li>))
                 }
             </ul>
         </div>
