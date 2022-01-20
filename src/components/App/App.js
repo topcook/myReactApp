@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { incrementBird } from '../../store/birds/birds';
 
 function App() {
 
@@ -8,7 +9,9 @@ function App() {
     return state.birds
   });
 
-  console.log("birds: ", birds);
+  // console.log("birds: ", birds);
+
+  const dispatch = useDispatch()
 
   return (
     <div className="wrapper">
@@ -29,8 +32,8 @@ function App() {
           birds.map((bird) => (
             <li key={bird.name}>
               <h2>{bird.name}</h2>
-              <div>Views: {bird.views}</div>
-              <button><span role="img" aria-label="add">➕</span></button>
+              Views: {bird.views}
+              <button onClick={()=>dispatch(incrementBird(bird.name))}><span role="img" aria-label="add">➕</span></button>
             </li>
           ))
         }
