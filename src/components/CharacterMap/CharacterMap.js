@@ -1,4 +1,4 @@
-import React, {memo} from "react";
+import React, { memo } from "react";
 import PropTypes from 'prop-types';
 
 function itemize(text) {
@@ -15,9 +15,14 @@ function itemize(text) {
         .sort((a, b) => b[1] - a[1]);
 }
 
-function CharacterMap({ text }) {
+function CharacterMap({ showExplanation, text }) {
     return (
         <div>
+            {showExplanation &&
+                <p>
+                    This display a list of the most common characters.
+                </p>
+            }
             CharacterMap:
             <ul>
                 {
@@ -29,6 +34,7 @@ function CharacterMap({ text }) {
 }
 
 CharacterMap.propTypes = {
+    showExplanation: PropTypes.bool.isRequired,
     text: PropTypes.string.isRequired
 }
 
