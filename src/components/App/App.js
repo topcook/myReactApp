@@ -4,10 +4,14 @@ import { useSelector } from 'react-redux';
 
 function App() {
 
-  const bidrs = useSelector(state => state.bidrs);
+  const birds = useSelector(state => {
+    return state.birds
+  });
+
+  console.log("birds: ", birds);
 
   return (
-    <div class="wrapper">
+    <div className="wrapper">
       <h1>Bird List</h1>
       <form>
         <label>
@@ -22,7 +26,7 @@ function App() {
       </form>
       <ul>
         {
-          bidrs.map((bird) => (
+          birds.map((bird) => (
             <li key={bird.name}>
               <h2>{bird.name}</h2>
               <div>Views: {bird.views}</div>
