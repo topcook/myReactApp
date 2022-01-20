@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from 'react';
+import React, { useCallback, useReducer, useState } from 'react';
 import './App.css';
 
 import CharacterMap from '../CharacterMap/CharacterMap';
@@ -6,7 +6,7 @@ import CharacterMap from '../CharacterMap/CharacterMap';
 function App() {
   const [text, setText] = useState('');
   const [showExplanation, toggleExplanation] = useReducer(state => !state, false);
-  const transformer = item =>item.toLowerCase();
+  const transformer = useCallback(item => item.toLowerCase(), []);
 
   return (
     <div className='wrapper'>
@@ -24,7 +24,7 @@ function App() {
       <div>
         <button onClick={toggleExplanation}>Show Explanation</button>
       </div>
-      <CharacterMap showExplanation= {showExplanation} text={text} transformer={transformer}/>
+      <CharacterMap showExplanation={showExplanation} text={text} transformer={transformer} />
     </div>
   );
 }
