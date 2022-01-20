@@ -1,15 +1,33 @@
 import React from "react";
 import PropTypes from 'prop-types';
 
-export default function CharacterMap({text}){
-    return(
+function itemize(text) {
+    const letters = text.split('')
+        .filter(l => l !== ' ')
+        .reduce((collection, item) => {
+            const letter = item.toLowerCase();
+            return {
+                ...collection,
+                [letter]: (collection[letter] || 0) + 1
+            }
+        }, {})
+    return Object.entries(letters)
+        .sort((a, b) => b[1] - a[1]);
+}
+
+export default function CharacterMap({ text }) {
+    return (
         <div>
             CharacterMap:
-                {text}
+            <ul>
+                {
+                    itemize(text).map(character => (<li key={character[0]}>{character[0]}:{character[1]}</li>))
+                }
+            </ul>
         </div>
     );
 }
 
-CharacterMap.propTypes= {
-    text:PropTypes.string.isRequired
+CharacterMap.propTypes = {
+    text: PropTypes.string.isRequired
 }
