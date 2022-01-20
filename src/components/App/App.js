@@ -19,11 +19,11 @@ function App() {
             <li><Link to="/whale/blue">Blue Whale</Link></li>
           </ul>
         </nav>
-        <Routes>
+        <Routes>  
           <Route path='/manatee' element={<Manatee />} />
           <Route path='/narwhal' element={<NarWhal />} />
-          <Route exact path='/whale' element={<Whale />} />
-          <Route path='/whale/:type' element={<Whale />} />
+          <Route path='/whale/*' element={<Whale />} />
+          {/* <Route path='/whale/:path' element={<Whale />} /> */}
         </Routes>
       </BrowserRouter>
     </div>
