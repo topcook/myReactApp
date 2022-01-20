@@ -48,9 +48,8 @@ function birds(state = defaultBirds, action) {
     }
 }
 
-const birdApp = combineReducers(
-    {
-        birds
-    });
+const birdApp = combineReducers({
+    birds
+});
 
 export default birdApp;
